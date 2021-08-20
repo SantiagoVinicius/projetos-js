@@ -1,18 +1,29 @@
 function Converter(){
-
-    const url = "https://economia.awesomeapi.com.br/json/last/USD-BRL";
-    $.getJSON(url, function(dados){
-        const valorCotacaoDolar = dados.USDBRL.low;
-
-        let valorEmDolar = document.querySelector("#valorEmDolar").value;
-
-        let valorEmReal = (valorEmDolar * valorCotacaoDolar).toFixed(2);
-
-        document.querySelector("#valorEmReal").value = valorEmReal;
-
-    })
+    const enderecoAPI = "https://economia.awesomeapi.com.br/json/last/USD-BRL";
+    let valorCotacaoDolar = 0;
+    $.ajax({
+        url: enderecoAPI,
+        async: false,
+        error: function(erro){
+            console.log("Erro ao consultar API:");
+            console.log(erro.responseJSON.message);
+        },
+        success: function(dados){
+            valorCotacaoDolar = dados.USDBRL.low;
+        }
+    });
+    let valorEmDolar = document.querySelector("#valorEmDolar").value;
+    let valorEmReal = (valorEmDolar * valorCotacaoDolar).toFixed(2);
+    document.querySelector("#valorEmReal").value = valorEmReal;
 }
-    // 
+/*
+
+/*fetch(enderecoAPI)
+.then((response) => response.json())
+.then(function(dados){
+console.log(dados.USDBRL.low);
+});*/
+
 
     // let valorEmDolar = document.querySelector("#valorEmDolar").value;
 

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2? family = Abrir + Sans + Condensado: wght @ 300 & display = swap');
+body{
+    background-image: url(../img/riso.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    text-align: center;
+    font-family:'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    color: black;
+}
+#piada-texto{
+    padding: 15%;
+    color: black;
+}
+#btCriarPiada{
+    font-size: 20px;
+    background-color:cadetblue;
+    color: black;
+}
