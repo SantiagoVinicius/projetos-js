@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Open+Sans&display=swap');
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    background-image: url("../img/fundo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+h1{
+font-family: 'Indie Flower';
+font-size: 3em;
+margin: 0;
+padding: 0;
+}
+
+.container{
+    margin: 20px;
+    background-color: rgb(255, 255, 255, 0.5);
+}
+img{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    margin: 5px;
+}
+.lista-animes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.cartao{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
