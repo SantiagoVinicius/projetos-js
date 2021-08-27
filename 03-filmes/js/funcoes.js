@@ -1,28 +1,35 @@
-function CarregarAnimes() {
-let objetoAnimes = [
-    {
-        foto:"neverland.jpg",
-        nome:"The Promised Nerverland"
-    },
-    {
-        foto:"dragonboll.jpg",
-        nome:"DragonBoll"
-    },
-    {
-        foto:"pokemon.jpg",
-        nome:"Pokemón"
-    }
+function ConsultaAPI() {
+    const animeAPI = "https://api.jikan.moe/v3/season/2021/spring";
+    let objetoAnimes = [];
 
-]
-let listaAnimes = document.querySelector(".lista-animes");
-let cartao = "";
-for(let i = 0; i < objetoAnimes.length; i++){
-    cartao += "<div class='cartao'>";
-    cartao += "<img src='img/" + objetoAnimes[i].foto + "'>";
-    cartao += objetoAnimes[i].nome;
-    cartao += "</div>"
+    $.ajax({
+        url: animeAPI,
+        async: false,
+        success: function (dados) {
+            objetoAnimes = dados.anime;
+
+        }
+    });
+    return objetoAnimes;
 }
-listaAnimes.innerHTML = cartao
+
+function MontarCartao(foto, nome) {
+    let cartao = "";
+    cartao += "<div class='cartao'>";
+    cartao += "<img src='" + foto + "'>";
+    cartao += nome;
+    cartao += "</div>";
+    return cartao;
+}
+function CarregarAnimes() {
+    let listaAnimes = document.querySelector(".lista-animes");
+    let conjuntoDeCartoes = "";
+    let todosAnimes = ConsultaAPI();
+
+    todosAnimes.forEach(animeAtivo => {
+        conjuntoDeCartoes += MontarCartao(animeAtivo.image_url, animeAtivo.title);
+    });
+    listaAnimes.innerHTML = conjuntoDeCartoes;
 
 }
 window.onload = function () {
