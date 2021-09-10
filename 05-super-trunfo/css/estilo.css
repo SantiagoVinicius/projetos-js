@@ -47,10 +47,12 @@ h1,h2{
     width: inherit;
     height: inherit;
 }
+.nome-personagem-maquina,
 .nome-personagem-jogador{
     position: relative;
     transform: translateY(-492px);
 }
+.atributos-maquina,
 .atributos-jogador{
     position: relative;
     transform: translateY(-200px);
