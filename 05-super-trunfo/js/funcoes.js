@@ -77,11 +77,15 @@ function ExibirCartaMaquina(){
     divCartaMaquina.style.backgroundImage = `url(${cartaMaquina.imagem})`;
     document.querySelector(".nome-personagem-maquina").innerText = cartaMaquina.nome;
     let listaDeAtributosDaCarta = document.querySelector(".atributos-maquina");
-    listaDeAtributosDaCarta.innerHTML = PegarAtributos(cartaMaquina.atributos);
+    listaDeAtributosDaCarta.innerHTML = PegarAtributosMaquina(cartaMaquina.atributos);
 
 }
-function PegarAtributosMaquina(){
-
+function PegarAtributosMaquina(atributosDaCarta){
+let listaDeAtributos = "";
+for(let atributo in atributosDaCarta){
+    listaDeAtributos += `<li>${atributo} : ${atributosDaCarta[atributo]}</li>`;
+}
+return listaDeAtributos;
 }
 
 function PegarAtributos(atributosDaCarta){
@@ -91,7 +95,7 @@ function PegarAtributos(atributosDaCarta){
         listaDeAtributos += `<li>${atributo} : ${atributosDaCarta[atributo]} ${botaoRadio}</li>`;
     }
     return listaDeAtributos;
-}
+};
 
 
 const btnSortear = document.querySelector("#btnSortear");
@@ -99,7 +103,21 @@ btnSortear.onclick = () => {
 
     SortearCarta();
 ExibirCartaJogador();
-ExibirCartaMaquina();
-
 document.querySelector("#btnJogar").disabled = false;
+};
+
+const btnJogar = document.querySelector("#btnJogar");
+btnJogar.onclick = () => {
+    ExibirCartaMaquina();
+   let atributoEscolhido =  document.querySelector("input[name='atributo']:checked").value;
+   let atributoJogador = cartaJogador.atributos[atributoEscolhido];
+   let atributoMaquina = cartaMaquina.atributos[atributoEscolhido];
+
+   if(atributoJogador == atributoMaquina){
+       document.querySelector("#resultado").innerHTML = "<h1>EMPATE</h1>";
+   }else if(atributoJogador > atributoMaquina){
+       document.querySelector("#resultado").innerHTML = "<h1>Jogador Venceu!</h1>";
+   }else if(atributoJogador < atributoMaquina){
+       document.querySelector("#resultado").innerHTML = "<h1>Máquina Venceu!</h1>";
+   }
 };
